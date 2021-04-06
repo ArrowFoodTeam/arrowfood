@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Route component={Inicio} path="/" />
-      <Route component={Register} path="/resgistro" />
+      <Route component={Register} path="/registro" />
     </>
   );
 }

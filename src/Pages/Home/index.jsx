@@ -2,7 +2,9 @@
 import './index.css'
 
 const Inicio = () => {
-    console.log('entro?');
+
+    
+
     return (
         <>
             <header className='header'>

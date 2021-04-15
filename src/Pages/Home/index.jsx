@@ -1,14 +1,15 @@
 
 import './index.css'
 
-const Inicio = () => {
+//import components
+import MenuInicio from '../../components/MenuInicio/Index';
 
-    
+const Inicio = () => {
 
     return (
         <>
-            <header className='header'>
-                <h1 className='h1'>Arrow Food</h1>
+            <header>
+                <MenuInicio />
             </header>
         </>
     )

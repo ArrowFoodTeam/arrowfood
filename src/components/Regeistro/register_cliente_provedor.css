@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.formulario input{
+    padding: 0.5em;
+    text-align: center;
+}
+.formulario label{
+    text-align: center;
+    margin: 1rem;
+}
+.formulario fieldset{
+    display: flex;
+    flex-direction: column;
+}

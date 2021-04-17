@@ -1,10 +1,32 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './register_cliente_provedor.css' 
-
+import registroProvedor from '../../services/registroProvedor'
 
 const RegistroClienteProvedor = () =>{
   const [campoNull, setcamponull] = useState(true)
+  const [formularioCompleto, setFormularioCompleto] = useState(false)
   
+  // necesitamos 
+  // useeffect que se usara para enviar los datos al servidor
+  useEffect(() => {
+    if (formularioCompleto === true) {
+      const formul = []
+      const data = document.forms
+      const datos = new FormData(data[0])
+      for (let pair of datos.entries()) {
+        const objpre = {}
+        objpre[pair[0]] = pair[1]
+        formul.push(objpre)
+      }
+      console.log(formul);
+      const url ="http://localhost:5000/registroprovedor"
+      registroProvedor(url, formul)
+        .then(response => console.log(response.json()))
+    }
+  }, [formularioCompleto])
+  
+/// hay que completar mas metodos para hacer las correspodentes comprobaciones
+/// una idea es 
   const validarEmail = (email) => {
     let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/gm
     if(regex.test(email)) return true
@@ -19,6 +41,7 @@ const RegistroClienteProvedor = () =>{
       setcamponull(false)
     } else {
       setcamponull(true)
+      setFormularioCompleto(true)
     }
   }
     return(
@@ -39,7 +62,9 @@ const RegistroClienteProvedor = () =>{
           <label htmlFor="numero">Numero: </label>
           <input type="number" name="numero" id="numero"/>
           <label htmlFor="portal">portal</label>
-          <input type="text" name="portal" id="portal"/>
+          <input type="text" name="portal" id="portal" />
+          <label htmlFor="codigopostal">Codigo Postal</label>
+          <input type="number" name="codigopostal" id="codigopostal"/>
           <label htmlFor="opcional">Informacion adiccional piso | bloque...etc</label>
           <input type="text" name="opcional" id="opcional"/>
         </fieldset>
